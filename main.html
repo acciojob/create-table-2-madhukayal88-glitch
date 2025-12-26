@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Table</title>
+    <style>
+        /* Basic styling to make the table visible */
+        table { border-collapse: collapse; margin-top: 20px; }
+        td { border: 1px solid black; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <input type="button" value="Create the table" onclick="createTable()">
+    
+    <table id="myTable"></table>
+
+    <script>
+        // --- THIS IS THE SCRIPT.JS CONTENT ---
+        
+        function createTable() {
+            // 1. Prompt for rows
+            let rn = prompt("Input number of rows");
+            // 2. Prompt for columns
+            let cn = prompt("Input number of columns");
+
+            // 3. Parse inputs
+            let rows = parseInt(rn);
+            let cols = parseInt(cn);
+
+            // 4. Handle Edge Cases: Non-numeric
+            if (isNaN(rows) || isNaN(cols)) {
+                // Ignore input
+                return;
+            }
+
+            // 5. Handle Edge Cases: Negative or Zero
+            if (rows <= 0 || cols <= 0) {
+                alert("Please enter values greater than 0.");
+                return;
+            }
+
+            // 6. Get table and clear previous content
+            let table = document.getElementById("myTable");
+            table.innerHTML = "";
+
+            // 7. Loop to create rows
+            for (let i = 0; i < rows; i++) {
+                let tr = document.createElement("tr");
+
+                // 8. Loop to create cells (columns)
+                for (let j = 0; j < cols; j++) {
+                    let td = document.createElement("td");
+                    // 9. Set text content: Row-i Column-j
+                    td.innerText = "Row-" + i + " Column-" + j;
+                    tr.appendChild(td);
+                }
+                
+                table.appendChild(tr);
+            }
+        }
+    </script>
+</body>
+</html>
